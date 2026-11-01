@@ -1,21 +1,34 @@
-# 🛒 Rage Store: Integrated E-commerce & Automated Delivery Bot
+# 🛒 Rage Store: Bot de E-commerce com Entrega Automática
 
-## 📌 Project Overview
-A comprehensive full-stack Discord solution for digital product sales. This bot automates the entire sales cycle—from inventory management and dynamic UI rendering to real-time payment processing via the **Mercado Pago API** and instant product provisioning.
+## 📌 Visão geral
 
-## 🚀 Key Features & Business Logic
-* **Real-time Payment Integration:** Utilizes the Mercado Pago SDK to generate dynamic PIX (Brazilian Instant Payment) QR codes and "Copy & Paste" keys directly within the Discord interface.
-* **Automated Provisioning (FIFO):** Implements a "First-In, First-Out" (FIFO) logic for license key delivery. The system automatically pulls from an encrypted SQLite database to deliver unique keys upon payment confirmation.
-* **Dynamic Inventory Management:** Admin dashboard allows for real-time SKU updates, price adjustments, and stock replenishment via Discord Modals.
-* **Secure Checkout Flow:** Creates private, ephemeral threads for each customer to ensure a secure and private transaction environment, preventing credential exposure.
+Uma solução full-stack completa no Discord para a venda de produtos digitais. O bot automatiza todo o ciclo de
+venda: do controle de estoque e da interface dinâmica até o pagamento em tempo real pela **API do Mercado Pago**
+e a entrega instantânea do produto.
 
-## 🛠️ Technical Architecture
-* **Backend:** Node.js with `discord.js` v14.
-* **Database:** `quick.db` (SQLite-based) for high-speed persistence of product drafts and stock lists.
-* **Fintech Integration:** RESTful integration with Mercado Pago for transaction status polling (webhooks/polling logic).
-* **State Management:** Handles complex multi-step user interactions using Modal submissions and temporary database drafts.
+## 🚀 Principais funcionalidades e regras de negócio
 
-## 🔐 Security Best Practices
-* **Environment Isolation:** Secrets such as Discord Tokens and Payment API Keys are managed strictly via `.env` files (not included in the repository).
-* **Role-Based Access Control (RBAC):** Admin functionalities are protected by role-ID checks to prevent unauthorized inventory manipulation.
-* **Input Sanitization:** User inputs are processed and validated to prevent script injection in product listings.
+* **Pagamento em tempo real:** usa o SDK do Mercado Pago para gerar QR Codes PIX dinâmicos e chaves "Copia e Cola"
+  direto na interface do Discord.
+* **Entrega automática (FIFO):** segue a lógica "primeiro a entrar, primeiro a sair" na entrega das chaves de licença.
+  Assim que o pagamento é confirmado, o sistema puxa automaticamente uma chave única de um banco SQLite e entrega ao cliente.
+* **Gestão de estoque dinâmica:** um painel administrativo permite atualizar produtos, ajustar preços e repor estoque
+  em tempo real, por meio de formulários (Modals) do Discord.
+* **Checkout seguro:** cria um tópico privado e temporário para cada cliente, garantindo uma transação reservada
+  e evitando a exposição de dados.
+
+## 🛠️ Arquitetura técnica
+
+* **Backend:** Node.js com `discord.js` v14.
+* **Banco de dados:** `quick.db` (baseado em SQLite) para guardar com rapidez os rascunhos de produtos e as listas de estoque.
+* **Integração de pagamentos:** integração REST com o Mercado Pago para acompanhar o status das transações (consulta periódica).
+* **Gerenciamento de estado:** lida com interações de várias etapas usando envio de formulários (Modals) e rascunhos temporários no banco.
+
+## 🔐 Boas práticas de segurança
+
+* **Isolamento de credenciais:** segredos como o token do Discord e as chaves da API de pagamento ficam apenas
+  em arquivos `.env`, que não estão no repositório.
+* **Controle de acesso por cargo:** as funções administrativas são protegidas por verificação do ID do cargo,
+  impedindo que pessoas não autorizadas alterem o estoque.
+* **Validação de entradas:** os dados enviados pelos usuários são tratados e validados para impedir a injeção de
+  scripts nos anúncios de produtos.
